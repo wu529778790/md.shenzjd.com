@@ -33,13 +33,8 @@ const isElectron = process.env.ELECTRON === "true";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // 动态设置 base 路径
-  // GitHub Pages 部署时会自动从环境变量获取仓库名称
-  base: isElectron
-    ? "./"
-    : process.env.NODE_ENV === "production" && process.env.GITHUB_REPOSITORY
-    ? `/${process.env.GITHUB_REPOSITORY.split("/")[1]}/`
-    : "/",
+  // Electron构建：使用相对路径 './'，解决file://协议下的路径问题
+  base: isElectron ? "./" : "/",
   // 插件配置
   plugins: [
     // Vue 插件，用于支持 .vue 单文件组件
