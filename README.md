@@ -152,4 +152,45 @@ docker run -d -p 8080:80 mdeditor
 
 ## 项目部署
 
+### 在线体验
+
 本项目已部署在 [mdeditor.shenzjd.com](https://mdeditor.shenzjd.com)，欢迎体验使用！
+
+### GitHub Pages 部署
+
+本项目支持一键部署到 GitHub Pages：
+
+1. **启用 GitHub Pages**：
+   - 进入 GitHub 仓库的 Settings 页面
+   - 找到 "Pages" 选项
+   - Source 选择 "GitHub Actions"
+
+2. **自动部署**：
+   - 推送代码到 `main` 分支时会自动触发部署
+   - 构建产物将自动部署到 GitHub Pages
+   - 访问地址：`https://你的用户名.github.io/仓库名`
+
+3. **预览部署**：
+   - 创建 Pull Request 时会自动生成预览版本
+   - 在 PR 评论中会显示预览链接
+   - 便于在合并前预览更改效果
+
+4. **手动触发**：
+   - 也可以在 Actions 页面手动触发部署 workflow
+
+### 其他部署方式
+
+#### Docker 部署
+
+```bash
+# 使用 Docker Compose
+docker compose up -d
+
+# 或直接使用 Docker
+docker build -t mdeditor .
+docker run -d -p 8080:80 mdeditor
+```
+
+#### Vercel 部署
+
+项目已配置 Vercel 自动部署，推送到主分支会自动部署到 Vercel。

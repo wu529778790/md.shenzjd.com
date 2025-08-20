@@ -6,7 +6,7 @@
  * 它定义了项目在开发和生产环境中的行为。
  *
  * 主要配置项:
- * 1.  **`plugins`**: 
+ * 1.  **`plugins`**:
  *     - `@vitejs/plugin-vue`: 这是官方的 Vue 插件，是让 Vite 能够理解和处理
  *       `.vue` 单文件组件（SFC）的核心。它负责将 SFC 编译成浏览器可以理解的
  *       JavaScript 和 CSS。
@@ -27,18 +27,23 @@
  * 同时根据项目的特定需求（如端口号、局域网访问）进行了定制。
  */
 
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-const isElectron = process.env.ELECTRON === 'true';
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+const isElectron = process.env.ELECTRON === "true";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    // Electron构建：使用相对路径 './'，解决file://协议下的路径问题
-  base: isElectron ? './' : '/',
+  // 动态设置 base 路径
+  // GitHub Pages 部署时会自动从环境变量获取仓库名称
+  base: isElectron
+    ? "./"
+    : process.env.NODE_ENV === "production" && process.env.GITHUB_REPOSITORY
+    ? `/${process.env.GITHUB_REPOSITORY.split("/")[1]}/`
+    : "/",
   // 插件配置
   plugins: [
     // Vue 插件，用于支持 .vue 单文件组件
-    vue()
+    vue(),
   ],
 
   // 开发服务器配置
@@ -46,14 +51,14 @@ export default defineConfig({
     // 端口号
     port: 3000,
     // 允许通过局域网 IP 访问
-    host: true
+    host: true,
   },
 
   // 生产构建配置
   build: {
     // 输出目录
-    outDir: 'dist',
+    outDir: "dist",
     // 静态资源目录
-    assetsDir: 'assets'
-  }
+    assetsDir: "assets",
+  },
 });
