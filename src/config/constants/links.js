@@ -6,7 +6,5 @@
  */
 
 export const EXTERNAL_LINKS = {
-  GITHUB_REPO: 'https://github.com/xiaobox/mdeditor'
+  GITHUB_REPO: "https://github.com/wu529778790/mdeditor.shenzjd.com",
 };
-
-
