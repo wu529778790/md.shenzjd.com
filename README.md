@@ -75,51 +75,6 @@
   - 基于 Vue 3 + Vite + CodeMirror 6
   - 模块化设计，易于扩展和维护
 
-## 技术栈
-
-- **前端框架**: Vue 3 + Vite
-- **编辑器**: CodeMirror 6
-- **样式**: CSS 变量 + 主题系统
-- **构建工具**: Vite 5
-- **部署**: 支持 Docker 和静态部署
-
-## 环境要求
-
-- **Node.js**：≥ 18（推荐 18/20 LTS）
-- **包管理器**：npm / pnpm / yarn 均可
-- **浏览器**：现代浏览器（Chrome/Edge/Safari/Firefox 最新版本）
-
-## 本地开发
-
-如果您想在本地运行或进行二次开发：
-
-```bash
-# 安装依赖
-npm install
-
-# 本地开发
-npm run dev
-
-# 生产构建
-npm run build
-
-# 预览构建产物
-npm run preview
-```
-
-## Docker 部署
-
-支持 Docker 容器化部署：
-
-```bash
-# 使用 Docker Compose
-docker compose up -d
-
-# 或直接使用 Docker
-docker build -t mdeditor .
-docker run -d -p 8080:80 mdeditor
-```
-
 ## 使用方法
 
 1. **在线使用**: 直接访问 [https://md.shenzjd.com](https://md.shenzjd.com)
@@ -134,21 +89,6 @@ docker run -d -p 8080:80 mdeditor
 - **主题定制**: 丰富的颜色主题和代码样式选择
 - **实时同步**: 编辑和预览同步滚动
 - **一键导出**: 支持多种格式导出
-
-## 许可证
-
-本项目采用 **MIT** 许可证。
-
-## 致谢
-
-感谢以下优秀开源项目：
-
-- Vue 3
-- Vite
-- CodeMirror 6
-- github-markdown-css
-
----
 
 ## 项目部署
 
