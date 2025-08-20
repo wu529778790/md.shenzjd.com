@@ -5,53 +5,23 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-  workflow_dispatch: # 允许手动触发
+  workflow_dispatch:
 
-# 设置 GITHUB_TOKEN 的权限来部署到 GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 优化并发控制 - 基于分支和 PR 号
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref_name }}
+  group: "${{ github.workflow }}-${{ github.ref_name }}"
   cancel-in-progress: ${{ github.ref_name != 'main' }}
 
 env:
   NODE_VERSION: "18"
 
 jobs:
-  # 检查任务 - 验证构建环境
-  check:
-    runs-on: ubuntu-latest
-    outputs:
-      node-version: ${{ steps.node.outputs.version }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        id: node
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-
-      - name: Check Node.js version
-        run: echo "Node.js version: $(node --version)"
-
-      - name: Check npm version
-        run: echo "npm version: $(npm --version)"
-
-      - name: Verify package.json
-        run: npm list --depth=0
-
-  # 构建任务
   build:
     runs-on: ubuntu-latest
-    needs: check
 
     steps:
       - name: Checkout
@@ -71,15 +41,7 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           echo "开始构建项目..."
-          echo "仓库信息: $GITHUB_REPOSITORY"
           npm run build
-
-      - name: Check build output
-        run: |
-          echo "构建产物信息:"
-          ls -la dist/
-          echo "构建产物大小:"
-          du -sh dist/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -88,9 +50,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
-          retention-days: 7
 
-  # 部署任务 - 仅在 main 分支 push 时执行
   deploy:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     environment:
@@ -103,9 +63,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: Output deployment URL
-        run: |
-          echo "🚀 部署成功!"
-          echo "📍 访问地址: ${{ steps.deployment.outputs.page_url }}"
-          echo "🔗 页面 URL: ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
