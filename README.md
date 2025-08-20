@@ -20,7 +20,7 @@
 
 ## 在线体验
 
-🌐 **访问地址**: [https://mdeditor.shenzjd.com](https://mdeditor.shenzjd.com)
+🌐 **访问地址**: [https://md.shenzjd.com](https://md.shenzjd.com)
 
 ## 项目简介
 
@@ -122,7 +122,7 @@ docker run -d -p 8080:80 mdeditor
 
 ## 使用方法
 
-1. **在线使用**: 直接访问 [https://mdeditor.shenzjd.com](https://mdeditor.shenzjd.com)
+1. **在线使用**: 直接访问 [https://md.shenzjd.com](https://md.shenzjd.com)
 2. **编辑文档**: 在左侧编辑器输入 Markdown 内容
 3. **实时预览**: 右侧实时显示渲染效果
 4. **切换主题**: 点击右上角设置按钮调整主题和样式
@@ -154,7 +154,7 @@ docker run -d -p 8080:80 mdeditor
 
 ### 在线体验
 
-本项目已部署在 [mdeditor.shenzjd.com](https://mdeditor.shenzjd.com)，欢迎体验使用！
+本项目已部署在 [md.shenzjd.com](https://md.shenzjd.com)，欢迎体验使用！
 
 ### GitHub Pages 部署
 

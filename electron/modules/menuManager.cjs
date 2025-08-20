@@ -116,7 +116,7 @@ class MenuManager {
               dialog.showMessageBox(this.mainWindow, {
                 type: "info",
                 title: "github",
-                message: "https://github.com/wu529778790/mdeditor.shenzjd.com",
+                message: "https://github.com/wu529778790/md.shenzjd.com",
               });
             },
           },
